@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/user.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,OAAd,CAAR;AAAA,C","file":"user.js","sourcesContent":["/**\n * Gets the right collection for the users\n * @param db\n */\nexport default (db) => db.collection('users');\n"]}
