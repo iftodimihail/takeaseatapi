@@ -7,6 +7,7 @@
     "build": "babel src -s -D -d dist --presets es2015,stage-0",
     "dev": "nodemon -w src --inspect --exec \"babel-node src --presets es2015,stage-0\"",
     "start": "node dist",
+    "seed": "node ./scripts/seed.js",
     "test": "./node_modules/.bin/mocha"
   },
   "repository": {
@@ -32,11 +33,13 @@
     "jsonwebtoken": "^8.4.0",
     "lodash": "^4.17.11",
     "moment": "^2.23.0",
+    "mongo-seeding": "^3.1.0",
     "mongodb": "^3.1.10",
     "passport": "^0.4.0",
     "passport-auth-token": "^1.0.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "path": "^0.12.7",
     "swagger-jsdoc": "^3.2.6",
     "swagger-ui-express": "^4.0.2"
   },
