@@ -6,6 +6,7 @@ import restaurantTypes from './controllers/restaurant_types';
 import kitchenTypes from './controllers/kitchen_types';
 import priceTypes from './controllers/price_types';
 import ratingTypes from './controllers/rating_types';
+import localuri from './controllers/localuri';
 
 import authenticate from './concerns/authenticate';
 import authentication from './controllers/authentication';
@@ -19,6 +20,7 @@ export default (db) => {
   api.use('/kitchen-types', kitchenTypes(db));
   api.use('/price-types', priceTypes(db));
   api.use('/rating-types', ratingTypes(db));
+  api.use('/localuri', localuri(db));
 
 
   api.get('/', (req, res) => {
