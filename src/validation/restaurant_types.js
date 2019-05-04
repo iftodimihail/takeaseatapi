@@ -8,7 +8,7 @@ export default {
   },
   update: {
     body: {
-      name: Joi.string().required().required(),
+      name: Joi.string().required(),
     }
   }
 };

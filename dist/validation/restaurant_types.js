@@ -18,8 +18,8 @@ exports.default = {
   },
   update: {
     body: {
-      name: _joi2.default.string().required().required()
+      name: _joi2.default.string().required()
     }
   }
 };
-//# sourceMappingURL=filter_types.js.map
+//# sourceMappingURL=restaurant_types.js.map

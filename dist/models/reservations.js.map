@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/reservations.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,cAAd,CAAR;AAAA,C","file":"reservations.js","sourcesContent":["/**\r\n * Gets the right collection for the reservations\r\n * @param db\r\n */\r\nexport default (db) => db.collection('reservations');\r\n"]}

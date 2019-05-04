@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/kitchen_types.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,eAAd,CAAR;AAAA,C","file":"kitchen_types.js","sourcesContent":["/**\r\n * Gets the right collection for the kitchen types\r\n * @param db\r\n */\r\nexport default (db) => db.collection('kitchen_types');\r\n"]}

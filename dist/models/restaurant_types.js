@@ -5,10 +5,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 
 /**
- * Gets the right collection for the users
+ * Gets the right collection for the restaurant types
  * @param db
  */
 exports.default = function (db) {
   return db.collection('restaurant_types');
 };
-//# sourceMappingURL=filter_types.js.map
+//# sourceMappingURL=restaurant_types.js.map

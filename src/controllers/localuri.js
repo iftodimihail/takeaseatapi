@@ -42,7 +42,7 @@ export default (db) => {
   /**
    * Show an existing resource
    * @swagger
-   * /api/localuri/{id}:
+   * /api/localuri/{uniqueLink}:
    *   get:
    *     tags:
    *       - Localuri
@@ -55,12 +55,12 @@ export default (db) => {
    *     produces:
    *       - application/json
    *     parameters:
-   *       - name: id
+   *       - name: uniqueLink
    *         in: path
    *         schema:
    *           type: string
    *         required:
-   *           - id
+   *           - uniqueLink
    *     responses:
    *       200:
    *         description: A localuri object
@@ -69,9 +69,9 @@ export default (db) => {
    *       422:
    *         description: Unprocessable entity
    */
-  api.get('/:id', async (req, res) => {
+  api.get('/:uniqueLink', async (req, res) => {
     try {
-      const localuri = await repository(db).show(req.params.id);
+      const localuri = await repository(db).show(req.params.uniqueLink);
       return response(res).item(localuri, transformer);
     } catch (err) {
       return response(res).error(err);

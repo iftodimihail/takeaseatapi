@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/transformers/filter_types.js"],"names":["data","id","_id","name"],"mappings":";;;;;;kBAAe,UAACA,IAAD;AAAA,SAAW;AACxBC,QAAID,KAAKE,GADe;AAExBC,UAAMH,KAAKG;AAFa,GAAX;AAAA,C","file":"filter_types.js","sourcesContent":["export default (data) => ({\r\n  id: data._id,\r\n  name: data.name\r\n});\r\n"]}

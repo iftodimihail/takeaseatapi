@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/price_types.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,aAAd,CAAR;AAAA,C","file":"price_types.js","sourcesContent":["/**\r\n * Gets the right collection for the price types\r\n * @param db\r\n */\r\nexport default (db) => db.collection('price_types');\r\n"]}

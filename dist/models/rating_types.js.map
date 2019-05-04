@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/rating_types.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,cAAd,CAAR;AAAA,C","file":"rating_types.js","sourcesContent":["/**\r\n * Gets the right collection for the rating types\r\n * @param db\r\n */\r\nexport default (db) => db.collection('rating_types');\r\n"]}

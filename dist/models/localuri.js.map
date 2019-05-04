@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/models/localuri.js"],"names":["db","collection"],"mappings":";;;;;;AAAA;;;;kBAIe,UAACA,EAAD;AAAA,SAAQA,GAAGC,UAAH,CAAc,UAAd,CAAR;AAAA,C","file":"localuri.js","sourcesContent":["/**\r\n * Gets the right collection for the localuri\r\n * @param db\r\n */\r\nexport default (db) => db.collection('localuri');\r\n"]}

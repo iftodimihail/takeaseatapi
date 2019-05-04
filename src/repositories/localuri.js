@@ -26,9 +26,9 @@ export default (db) => {
     }
   };
 
-  const show = async (id) => {
+  const show = async (uniqueLink) => {
     try {
-      return await localuriModel(db).findOne({_id: mongoDB.ObjectId(id)});
+      return await localuriModel(db).findOne({uniqueLink});
     } catch (err) {
       console.error(err);
       throw err;

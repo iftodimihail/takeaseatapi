@@ -22,7 +22,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'moo-bistro'
   },
   {
     id: 2,
@@ -31,7 +32,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'cafeneaua-piața-unirii'
   },
   {
     id: 3,
@@ -40,7 +42,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'legends-pub'
   },
   {
     id: 4,
@@ -49,7 +52,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'fenice'
   },
   {
     id: 5,
@@ -58,7 +62,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'dionisos'
   },
   {
     id: 6,
@@ -67,7 +72,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'taverna'
   },
   {
     id: 7,
@@ -76,7 +82,8 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'square'
   },
   {
     id: 8,
@@ -85,6 +92,7 @@ module.exports = [
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
-    kitchenType: 'Random'
+    kitchenType: 'Random',
+    uniqueLink: 'fika'
   }
 ];

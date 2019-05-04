@@ -50,8 +50,6 @@ var _swaggerUiExpress = require('swagger-ui-express');
 
 var _swaggerUiExpress2 = _interopRequireDefault(_swaggerUiExpress);
 
-var _mongoSeeding = require('mongo-seeding');
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -73,23 +71,6 @@ app.use(_bodyParser2.default.urlencoded({
 }));
 
 app.use(_passport2.default.initialize());
-
-var seederConfig = {
-  database: {
-    name: process.env.MONGO_DB
-  },
-  dropDatabase: true
-};
-var seeder = new _mongoSeeding.Seeder(seederConfig);
-var collections = seeder.readCollectionsFromPath(path.resolve('./seeders'), {
-  transformers: [_mongoSeeding.Seeder.Transformers.replaceDocumentIdWithUnderscoreId]
-});
-
-seeder.import(collections).then(function () {
-  console.log('Success');
-}).catch(function (err) {
-  console.log('Error', err);
-});
 
 /**
  * If a connection to the MongoDB is successfull, the API will continue loading
