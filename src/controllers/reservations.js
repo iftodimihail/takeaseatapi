@@ -4,6 +4,18 @@ import repository from '../repositories/reservations';
 import validate from 'express-validation';
 import validationRules from '../validation/reservations';
 import transformer from '../transformers/reservations';
+import nodemailer from 'nodemailer';
+import QRCode from 'qrcode';
+import schedule from 'node-schedule';
+
+const transporter = nodemailer.createTransport({
+  host: "smtp.mailtrap.io",
+  port: 2525,
+  auth: {
+    user: "9ac93167c76550",
+    pass: "fddc5c5f4567c4"
+  }
+});
 
 export default (db) => {
 
@@ -77,7 +89,21 @@ export default (db) => {
   api.post('/', validate(validationRules.store), async (req, res) => {
     try {
       const reservation = (await repository(db).store(req.body)).ops;
-      return response(res).item(reservation, transformer);
+      const date = new Date(2019, 4, 5, 17, 43, 0);
+
+      const j = schedule.scheduleJob(date, function(){
+        console.log('The world is going to end today.');
+      });
+      QRCode.toDataURL('I am a pony!', async function (err, url) {
+        let info = await transporter.sendMail({
+          from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
+          to: reservation[0].email, // list of receivers
+          subject: "Hello ✔", // Subject line
+          text: "Hello world?", // plain text body
+          html: `<b>Hello world?</b><br /><img src=${url} />` // html body
+        });
+      });
+      return response(res).item(reservation[0], transformer);
     } catch (err) {
       return response(res).error(err);
     }
