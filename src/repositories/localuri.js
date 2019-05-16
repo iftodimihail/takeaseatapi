@@ -35,6 +35,16 @@ export default (db) => {
     }
   };
 
+  const showById = async (id) => {
+    try {
+      return await localuriModel(db).findOne({_id: id});
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
+
   const update = async (id, body) => {
     try {
       const now = moment().unix();
@@ -60,6 +70,7 @@ export default (db) => {
     index,
     store,
     show,
+    showById,
     update,
     destroy
   };

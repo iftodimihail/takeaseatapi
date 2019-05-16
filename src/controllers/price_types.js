@@ -13,7 +13,7 @@ export default (db) => {
    * /api/price-types:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: List priceTypes
    *     summary: Lists all the priceTypes
    *     security:
@@ -45,7 +45,7 @@ export default (db) => {
    * /api/price-types/{id}:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: Show priceTypes
    *     summary: Shows an existing priceTypes
    *     security:

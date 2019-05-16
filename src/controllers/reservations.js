@@ -1,12 +1,15 @@
 import { Router } from 'express';
 import response from '../concerns/response';
 import repository from '../repositories/reservations';
+import localRepository from '../repositories/localuri';
 import validate from 'express-validation';
 import validationRules from '../validation/reservations';
 import transformer from '../transformers/reservations';
 import nodemailer from 'nodemailer';
+import { emailTemplate } from '../utils';
 import QRCode from 'qrcode';
 import schedule from 'node-schedule';
+import moment from 'moment/moment';
 
 const transporter = nodemailer.createTransport({
   host: "smtp.mailtrap.io",
@@ -88,22 +91,22 @@ export default (db) => {
    */
   api.post('/', validate(validationRules.store), async (req, res) => {
     try {
+      console.log(req.body);
       const reservation = (await repository(db).store(req.body)).ops;
-      const date = new Date(2019, 4, 5, 17, 43, 0);
 
-      const j = schedule.scheduleJob(date, function(){
-        console.log('The world is going to end today.');
-      });
-      QRCode.toDataURL('I am a pony!', async function (err, url) {
-        let info = await transporter.sendMail({
+      const resObj =  reservation[0];
+      const place = (await localRepository(db).showById(resObj.local_id));
+
+      QRCode.toDataURL('www.takeaseat.com', async function (err, url) {
+       await transporter.sendMail({
           from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
-          to: reservation[0].email, // list of receivers
-          subject: "Hello ✔", // Subject line
-          text: "Hello world?", // plain text body
-          html: `<b>Hello world?</b><br /><img src=${url} />` // html body
+          to: resObj.email, // list of receivers
+          subject: `TakeASeat Rezervare ${place.name}`, // Subject line
+          text: `${resObj.last_name} hai in coace pe data de ${resObj.date}`, // plain text body
+          html: emailTemplate(resObj, place, url) // html body
         });
       });
-      return response(res).item(reservation[0], transformer);
+      return response(res).item(resObj, transformer);
     } catch (err) {
       return response(res).error(err);
     }

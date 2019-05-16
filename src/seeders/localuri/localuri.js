@@ -5,6 +5,7 @@ Module._extensions['.jpg'] = function(module, fn) {
   const base64 = fs.readFileSync(fn).toString('base64');
   module._compile('module.exports="data:image/jpg;base64,' + base64 + '"', fn);
 };
+
 const placeCard1 = require('../../images/place-cards/place-card1.jpg');
 const placeCard2 = require('../../images/place-cards/place-card2.jpg');
 const placeCard3 = require('../../images/place-cards/place-card3.jpg');
