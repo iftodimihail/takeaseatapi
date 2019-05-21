@@ -140,7 +140,7 @@ dbClient.connect(function () {
             /**
              * Starts server on the specified port
              */
-            app.listen(process.env.PORT, function () {
+            app.listen(process.env.PORT, '0.0.0.0', function () {
               console.log('Started on port ' + process.env.PORT);
             });
 

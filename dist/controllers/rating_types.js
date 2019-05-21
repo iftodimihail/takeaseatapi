@@ -32,7 +32,7 @@ exports.default = function (db) {
    * /api/rating-types:
    *   get:
    *     tags:
-   *       - Price types
+   *       - Filter type
    *     name: List ratingTypes
    *     summary: Lists all the ratingTypes
    *     security:
@@ -88,7 +88,7 @@ exports.default = function (db) {
    * /api/rating-types/{id}:
    *   get:
    *     tags:
-   *       - Price types
+   *       - Filter type
    *     name: Show ratingTypes
    *     summary: Shows an existing ratingTypes
    *     security:

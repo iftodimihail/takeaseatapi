@@ -2,6 +2,7 @@ import { Router } from 'express';
 import response from '../concerns/response';
 import repository from '../repositories/localuri';
 import transformer from '../transformers/localuri.js';
+import cors from 'cors';
 
 export default (db) => {
 
@@ -30,10 +31,15 @@ export default (db) => {
    *       422:
    *         description: Unprocessable entity
    */
-  api.get('/', async (req, res) => {
+  api.get('/', cors(), async (req, res) => {
     try {
-      const localuri = await repository(db).index();
-      return response(res).collection(localuri, transformer);
+      if (req.query.id) {
+        const local = await repository(db).showById(req.query.id);
+        return response(res).item(local, transformer);
+      } else {
+        const localuri = await repository(db).index();
+        return response(res).collection(localuri, transformer);
+      }
     } catch (err) {
       return response(res).error(err);
     }
@@ -69,14 +75,13 @@ export default (db) => {
    *       422:
    *         description: Unprocessable entity
    */
-  api.get('/:uniqueLink', async (req, res) => {
+  api.get('/:uniqueLink', cors(), async (req, res) => {
     try {
       const localuri = await repository(db).show(req.params.uniqueLink);
       return response(res).item(localuri, transformer);
     } catch (err) {
       return response(res).error(err);
     }
-
   });
 
   return api;

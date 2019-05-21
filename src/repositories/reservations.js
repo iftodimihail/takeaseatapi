@@ -19,6 +19,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
+      body.confirmed = false;
       return await reservationsModel(db).insertOne(body);
     } catch (err) {
       console.error(err);
@@ -40,7 +41,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
-      return await reservationsModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, body);
+      return await reservationsModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, { $set: body });
     } catch (err) {
       console.error(err);
       throw err;

@@ -18,6 +18,10 @@ var _localuri3 = require('../transformers/localuri.js');
 
 var _localuri4 = _interopRequireDefault(_localuri3);
 
+var _cors = require('cors');
+
+var _cors2 = _interopRequireDefault(_cors);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -49,32 +53,50 @@ exports.default = function (db) {
    *       422:
    *         description: Unprocessable entity
    */
-  api.get('/', function () {
+  api.get('/', (0, _cors2.default)(), function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
-      var localuri;
+      var local, localuri;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
-              _context.next = 3;
+
+              if (!req.query.id) {
+                _context.next = 8;
+                break;
+              }
+
+              _context.next = 4;
+              return (0, _localuri2.default)(db).showById(req.query.id);
+
+            case 4:
+              local = _context.sent;
+              return _context.abrupt('return', (0, _response2.default)(res).item(local, _localuri4.default));
+
+            case 8:
+              _context.next = 10;
               return (0, _localuri2.default)(db).index();
 
-            case 3:
+            case 10:
               localuri = _context.sent;
               return _context.abrupt('return', (0, _response2.default)(res).collection(localuri, _localuri4.default));
 
-            case 7:
-              _context.prev = 7;
+            case 12:
+              _context.next = 17;
+              break;
+
+            case 14:
+              _context.prev = 14;
               _context.t0 = _context['catch'](0);
               return _context.abrupt('return', (0, _response2.default)(res).error(_context.t0));
 
-            case 10:
+            case 17:
             case 'end':
               return _context.stop();
           }
         }
-      }, _callee, undefined, [[0, 7]]);
+      }, _callee, undefined, [[0, 14]]);
     }));
 
     return function (_x, _x2) {
@@ -112,7 +134,7 @@ exports.default = function (db) {
    *       422:
    *         description: Unprocessable entity
    */
-  api.get('/:uniqueLink', function () {
+  api.get('/:uniqueLink', (0, _cors2.default)(), function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
       var localuri;
       return regeneratorRuntime.wrap(function _callee2$(_context2) {

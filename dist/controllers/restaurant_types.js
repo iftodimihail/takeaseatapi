@@ -32,7 +32,7 @@ exports.default = function (db) {
    * /api/restaurant-types:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: List restaurant_types
    *     summary: Lists all the restaurant_types
    *     security:
@@ -88,7 +88,7 @@ exports.default = function (db) {
    * /api/restaurant_types/{id}:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: Show restaurant_types
    *     summary: Shows an existing restaurant_types
    *     security:

@@ -8,6 +8,7 @@ import transformer from '../transformers/reservations';
 import nodemailer from 'nodemailer';
 import { emailTemplate } from '../utils';
 import QRCode from 'qrcode';
+import cors from 'cors';
 import schedule from 'node-schedule';
 import moment from 'moment/moment';
 
@@ -89,15 +90,14 @@ export default (db) => {
    *       422:
    *         description: Unprocessable entity
    */
-  api.post('/', validate(validationRules.store), async (req, res) => {
+  api.post('/', cors(), validate(validationRules.store), async (req, res) => {
     try {
-      console.log(req.body);
       const reservation = (await repository(db).store(req.body)).ops;
 
       const resObj =  reservation[0];
       const place = (await localRepository(db).showById(resObj.local_id));
 
-      QRCode.toDataURL('www.takeaseat.com', async function (err, url) {
+      QRCode.toDataURL(`https://nice-snail-27.localtunnel.me/reservation/${resObj._id}`, async function (err, url) {
        await transporter.sendMail({
           from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
           to: resObj.email, // list of receivers
@@ -196,6 +196,7 @@ export default (db) => {
    */
   api.put('/:id', validate(validationRules.update), async (req, res) => {
     try {
+      console.log(req.params.id, req.body);
       const reservation = await repository(db).update(req.params.id, req.body);
       return response(res).item(reservation, transformer);
     } catch (err) {

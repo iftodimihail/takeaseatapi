@@ -32,7 +32,7 @@ exports.default = function (db) {
    * /api/kitchenTypes:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: List kitchenTypess
    *     summary: Lists all the kitchenTypess
    *     security:
@@ -88,7 +88,7 @@ exports.default = function (db) {
    * /api/kitchenTypess/{id}:
    *   get:
    *     tags:
-   *       - Users
+   *       - Filter type
    *     name: Show kitchenTypes
    *     summary: Shows an existing kitchenTypes
    *     security:

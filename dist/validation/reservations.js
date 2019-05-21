@@ -17,9 +17,7 @@ exports.default = {
     }
   },
   update: {
-    body: {
-      local_id: _joi2.default.number().integer().required()
-    }
+    id: _joi2.default.number().integer().required()
   }
 };
 //# sourceMappingURL=reservations.js.map

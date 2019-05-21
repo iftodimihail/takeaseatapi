@@ -62,25 +62,26 @@ exports.default = function (db) {
 
               body.created_at = now;
               body.updated_at = now;
-              _context2.next = 6;
+              body.confirmed = false;
+              _context2.next = 7;
               return (0, _reservations2.default)(db).insertOne(body);
 
-            case 6:
+            case 7:
               return _context2.abrupt('return', _context2.sent);
 
-            case 9:
-              _context2.prev = 9;
+            case 10:
+              _context2.prev = 10;
               _context2.t0 = _context2['catch'](0);
 
               console.error(_context2.t0);
               throw _context2.t0;
 
-            case 13:
+            case 14:
             case 'end':
               return _context2.stop();
           }
         }
-      }, _callee2, undefined, [[0, 9]]);
+      }, _callee2, undefined, [[0, 10]]);
     }));
 
     return function store(_x) {
@@ -134,7 +135,7 @@ exports.default = function (db) {
               body.created_at = now;
               body.updated_at = now;
               _context4.next = 6;
-              return (0, _reservations2.default)(db).findOneAndUpdate({ _id: mongoDB.ObjectId(id) }, body);
+              return (0, _reservations2.default)(db).findOneAndUpdate({ _id: mongoDB.ObjectId(id) }, { $set: body });
 
             case 6:
               return _context4.abrupt('return', _context4.sent);

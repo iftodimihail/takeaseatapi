@@ -7,8 +7,6 @@ export default {
     }
   },
   update: {
-    body: {
-      local_id: Joi.number().integer().required(),
-    }
+    id: Joi.number().integer().required(),
   }
 };
