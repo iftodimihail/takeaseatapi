@@ -8,6 +8,7 @@ import priceTypes from './controllers/price_types';
 import ratingTypes from './controllers/rating_types';
 import localuri from './controllers/localuri';
 import reservations from './controllers/reservations';
+import reviews from './controllers/reviews';
 
 import authenticate from './concerns/authenticate';
 import authentication from './controllers/authentication';
@@ -23,7 +24,7 @@ export default (db) => {
   api.use('/rating-types', ratingTypes(db));
   api.use('/localuri', localuri(db));
   api.use('/reservations', reservations(db));
-
+  api.use('/reviews', reviews(db));
 
   api.get('/', (req, res) => {
     res.json({version});

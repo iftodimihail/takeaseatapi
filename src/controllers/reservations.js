@@ -155,7 +155,7 @@ export default (db) => {
   /**
    * Update an existing resource
    * @swagger
-   * /api/reservations/{id}:
+   * /api/reservations/confirm-arrival/{id}:
    *   put:
    *     tags:
    *       - Reservations
@@ -194,10 +194,23 @@ export default (db) => {
    *       422:
    *         description: Unprocessable entity
    */
-  api.put('/:id', validate(validationRules.update), async (req, res) => {
+  api.put('/confirm-arrival/:id', validate(validationRules.update), async (req, res) => {
     try {
-      console.log(req.params.id, req.body);
       const reservation = await repository(db).update(req.params.id, req.body);
+      const body = req.body;
+      const place = (await localRepository(db).showById(body.local_id));
+      const date = new Date(2019, 4, 22, 18, 58, 0);
+
+      schedule.scheduleJob(date, function(){
+        console.log('The world is going to end today.');
+        transporter.sendMail({
+          from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
+          to: body.email, // list of receivers
+          subject: `TakeASeat Recenzie ${place.name}`, // Subject line
+          text: `${body.last_name} hai in coace pe data de ${body.date}`, // plain text body
+          html: `<p>Fa o recenzie <a href='localhost:3000/reviews/${body.id}'>aici</a></p>` // html body
+        });
+      });
       return response(res).item(reservation, transformer);
     } catch (err) {
       return response(res).error(err);
