@@ -6,5 +6,7 @@ export default (data) => ({
   priceType: data.priceType,
   placeType: data.placeType,
   kitchenType: data.kitchenType,
-  uniqueLink: data.uniqueLink
+  uniqueLink: data.uniqueLink,
+  rating: data.rating,
+  totalReviews: data.totalReviews
 });

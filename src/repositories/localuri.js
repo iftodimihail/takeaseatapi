@@ -66,12 +66,28 @@ export default (db) => {
     }
   };
 
+  const updateOnReview = async (id, body) => {
+    try {
+      const now = moment().unix();
+      body.created_at = now;
+      body.updated_at = now;
+      return await localuriModel(db).findOneAndUpdate({_id: id},
+        {
+          $inc: { totalReviews: 1, rating: body.rating }
+        });
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   return {
     index,
     store,
     show,
     showById,
     update,
-    destroy
+    destroy,
+    updateOnReview
   };
 }

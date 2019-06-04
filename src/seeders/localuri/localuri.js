@@ -22,9 +22,11 @@ module.exports = [
     name: 'Moo Bistro',
     address: 'Lorem ipsum',
     priceType: 'Moderat',
-    placeType: 'Cafenea',
+    placeType: 'Restaurant',
     kitchenType: 'Random',
-    uniqueLink: 'moo-bistro'
+    uniqueLink: 'moo-bistro',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 2,
@@ -34,47 +36,57 @@ module.exports = [
     priceType: 'Moderat',
     placeType: 'Cafenea',
     kitchenType: 'Random',
-    uniqueLink: 'cafeneaua-piața-unirii'
+    uniqueLink: 'cafeneaua-piața-unirii',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 3,
     img: placeCard3,
     name: 'Legends pub',
     address: 'Lorem ipsum',
-    priceType: 'Moderat',
-    placeType: 'Cafenea',
+    priceType: 'Accesibil',
+    placeType: 'Pub',
     kitchenType: 'Random',
-    uniqueLink: 'legends-pub'
+    uniqueLink: 'legends-pub',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 4,
     img: placeCard4,
     name: 'Fenice',
     address: 'Lorem ipsum',
-    priceType: 'Moderat',
+    priceType: 'Premium',
     placeType: 'Cafenea',
     kitchenType: 'Random',
-    uniqueLink: 'fenice'
+    uniqueLink: 'fenice',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 5,
     img: placeCard5,
     name: 'Dionisos',
     address: 'Lorem ipsum',
-    priceType: 'Moderat',
-    placeType: 'Cafenea',
+    priceType: 'Accesibil',
+    placeType: 'Restaurant',
     kitchenType: 'Random',
-    uniqueLink: 'dionisos'
+    uniqueLink: 'dionisos',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 6,
     img: placeCard6,
     name: 'Taverna',
     address: 'Lorem ipsum',
-    priceType: 'Moderat',
-    placeType: 'Cafenea',
+    priceType: 'Accesibil',
+    placeType: 'Bar',
     kitchenType: 'Random',
-    uniqueLink: 'taverna'
+    uniqueLink: 'taverna',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 7,
@@ -84,7 +96,9 @@ module.exports = [
     priceType: 'Moderat',
     placeType: 'Cafenea',
     kitchenType: 'Random',
-    uniqueLink: 'square'
+    uniqueLink: 'square',
+    rating: 0,
+    totalReviews: 0
   },
   {
     id: 8,
@@ -94,6 +108,8 @@ module.exports = [
     priceType: 'Moderat',
     placeType: 'Cafenea',
     kitchenType: 'Random',
-    uniqueLink: 'fika'
+    uniqueLink: 'fika',
+    rating: 0,
+    totalReviews: 0
   }
 ];

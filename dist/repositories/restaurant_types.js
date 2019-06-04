@@ -200,4 +200,4 @@ exports.default = function (db) {
     destroy: destroy
   };
 };
-//# sourceMappingURL=restaurant_types.js.map
+//# sourceMappingURL=kitchen_types.js.map

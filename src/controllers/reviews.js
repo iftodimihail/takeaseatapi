@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import response from '../concerns/response';
 import repository from '../repositories/reviews';
+import localRepository from '../repositories/localuri';
 import validate from 'express-validation';
 import validationRules from '../validation/reviews';
 import transformer from '../transformers/reviews';
@@ -34,7 +35,7 @@ export default (db) => {
    */
   api.get('/', async (req, res) => {
     try {
-      const reviews = await repository(db).index();
+      const reviews = await repository(db).index(req.query);
       return response(res).collection(reviews, transformer);
     } catch (err) {
       return response(res).error(err);
@@ -83,7 +84,9 @@ export default (db) => {
    */
   api.post('/', validate(validationRules.store), async (req, res) => {
     try {
-      const reviews = (await repository(db).store(req.body)).ops;
+      const { body } = req;
+      const reviews = (await repository(db).store(body)).ops;
+      const local = await localRepository(db).updateOnReview(body.local_id, body);
       return response(res).item(reviews, transformer);
     } catch (err) {
       return response(res).error(err);

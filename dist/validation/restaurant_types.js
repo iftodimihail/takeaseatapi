@@ -22,4 +22,4 @@ exports.default = {
     }
   }
 };
-//# sourceMappingURL=restaurant_types.js.map
+//# sourceMappingURL=kitchen_types.js.map

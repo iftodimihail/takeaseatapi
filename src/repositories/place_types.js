@@ -1,4 +1,4 @@
-import restaurantTypesModel from '../models/restaurant_types';
+import placeTypesModel from '../models/place_types';
 
 const moment = require('moment');
 const mongoDB = require('mongodb');
@@ -7,7 +7,7 @@ export default (db) => {
 
   const index = async () => {
     try {
-      return await restaurantTypesModel(db).find().toArray();
+      return await placeTypesModel(db).find().toArray();
     } catch (err) {
       console.error(err);
       throw err;
@@ -19,7 +19,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
-      return await restaurantTypesModel(db).insertOne(body);
+      return await placeTypesModel(db).insertOne(body);
     } catch (err) {
       console.error(err);
       throw err;
@@ -28,7 +28,7 @@ export default (db) => {
 
   const show = async (id) => {
     try {
-      return await restaurantTypesModel(db).findOne({_id: mongoDB.ObjectId(id)});
+      return await placeTypesModel(db).findOne({_id: mongoDB.ObjectId(id)});
     } catch (err) {
       console.error(err);
       throw err;
@@ -40,7 +40,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
-      return await restaurantTypesModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, body);
+      return await placeTypesModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, body);
     } catch (err) {
       console.error(err);
       throw err;
@@ -49,7 +49,7 @@ export default (db) => {
 
   const destroy = async (id) => {
     try {
-      return await restaurantTypesModel(db).findOneAndDelete({_id: mongoDB.ObjectId(id)});
+      return await placeTypesModel(db).findOneAndDelete({_id: mongoDB.ObjectId(id)});
     } catch (err) {
       console.error(err);
       throw err;

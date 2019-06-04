@@ -5,9 +5,9 @@ const mongoDB = require('mongodb');
 
 export default (db) => {
 
-  const index = async () => {
+  const index = async (query) => {
     try {
-      return await reviewsModel(db).find().toArray();
+      return await reviewsModel(db).find({ local_id: parseInt(query.local_id) }).toArray();
     } catch (err) {
       console.error(err);
       throw err;

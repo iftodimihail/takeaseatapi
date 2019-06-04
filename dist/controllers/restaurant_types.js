@@ -33,8 +33,8 @@ exports.default = function (db) {
    *   get:
    *     tags:
    *       - Filter type
-   *     name: List restaurant_types
-   *     summary: Lists all the restaurant_types
+   *     name: List place_types
+   *     summary: Lists all the place_types
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -43,7 +43,7 @@ exports.default = function (db) {
    *       - application/json
    *     responses:
    *       200:
-   *         description: An array of restaurant_types objects
+   *         description: An array of place_types objects
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -85,12 +85,12 @@ exports.default = function (db) {
   /**
    * Show an existing resource
    * @swagger
-   * /api/restaurant_types/{id}:
+   * /api/place_types/{id}:
    *   get:
    *     tags:
    *       - Filter type
-   *     name: Show restaurant_types
-   *     summary: Shows an existing restaurant_types
+   *     name: Show place_types
+   *     summary: Shows an existing place_types
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -106,7 +106,7 @@ exports.default = function (db) {
    *           - id
    *     responses:
    *       200:
-   *         description: A restaurant_types object
+   *         description: A place_types object
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -147,4 +147,4 @@ exports.default = function (db) {
 
   return api;
 };
-//# sourceMappingURL=restaurant_types.js.map
+//# sourceMappingURL=kitchen_types.js.map

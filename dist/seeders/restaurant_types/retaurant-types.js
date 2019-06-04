@@ -13,4 +13,4 @@ module.exports = [{
   id: 4,
   name: 'Cafenea'
 }];
-//# sourceMappingURL=retaurant-types.js.map
+//# sourceMappingURL=place-types.js.map

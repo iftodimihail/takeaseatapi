@@ -197,18 +197,18 @@ export default (db) => {
   api.put('/confirm-arrival/:id', validate(validationRules.update), async (req, res) => {
     try {
       const reservation = await repository(db).update(req.params.id, req.body);
-      const body = req.body;
-      const place = (await localRepository(db).showById(body.local_id));
-      const date = new Date(2019, 4, 22, 18, 58, 0);
+      const reservationData = reservation.value;
+      const place = (await localRepository(db).showById(reservationData.local_id));
+      const date = moment().add(5, 's').toDate();
 
       schedule.scheduleJob(date, function(){
         console.log('The world is going to end today.');
         transporter.sendMail({
           from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
-          to: body.email, // list of receivers
+          to: reservationData.email, // list of receivers
           subject: `TakeASeat Recenzie ${place.name}`, // Subject line
-          text: `${body.last_name} hai in coace pe data de ${body.date}`, // plain text body
-          html: `<p>Fa o recenzie <a href='localhost:3000/reviews/${body.id}'>aici</a></p>` // html body
+          text: `${reservationData.last_name} hai in coace pe data de ${reservationData.date}`, // plain text body
+          html: `<p>Fa o recenzie <a href='localhost:3000/reviews/${reservationData._id}'>aici</a></p>` // html body
         });
       });
       return response(res).item(reservation, transformer);

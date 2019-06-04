@@ -9,6 +9,6 @@ Object.defineProperty(exports, "__esModule", {
  * @param db
  */
 exports.default = function (db) {
-  return db.collection('restaurant_types');
+  return db.collection('place_types');
 };
-//# sourceMappingURL=restaurant_types.js.map
+//# sourceMappingURL=kitchen_types.js.map
