@@ -36,10 +36,21 @@ export default (db) => {
       if (req.query.id) {
         const local = await repository(db).showById(req.query.id);
         return response(res).item(local, transformer);
-      } else {
-        const localuri = await repository(db).index();
-        return response(res).collection(localuri, transformer);
       }
+
+      if (req.query.nume) {
+        const localuriByName = await repository(db).showByField('name', req.query.nume);
+        return response(res).collection(localuriByName, transformer);
+      }
+
+      if (req.query.tip) {
+        const localuriByName = await repository(db).showByField('placeType', req.query.tip);
+        return response(res).collection(localuriByName, transformer);
+      }
+
+      const localuri = await repository(db).index();
+      return response(res).collection(localuri, transformer);
+
     } catch (err) {
       return response(res).error(err);
     }

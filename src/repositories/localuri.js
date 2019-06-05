@@ -44,6 +44,15 @@ export default (db) => {
     }
   };
 
+  const showByField = async (field, value) => {
+    try {
+      return await localuriModel(db).find({[field]: { $regex: value, $options : 'i' }}).toArray();
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
 
   const update = async (id, body) => {
     try {
@@ -86,6 +95,7 @@ export default (db) => {
     store,
     show,
     showById,
+    showByField,
     update,
     destroy,
     updateOnReview
