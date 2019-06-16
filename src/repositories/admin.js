@@ -1,4 +1,4 @@
-import userModel from '../models/user';
+import adminModel from '../models/admin';
 import bcrypt from 'bcrypt';
 
 const moment = require('moment');
@@ -8,7 +8,7 @@ export default (db) => {
 
   const index = async () => {
     try {
-      return await userModel(db).find().toArray();
+      return await adminModel(db).find().toArray();
     } catch (err) {
       console.error(err);
       throw err;
@@ -21,7 +21,7 @@ export default (db) => {
       body.password = await hashPassword(body.password);
       body.created_at = now;
       body.updated_at = now;
-      return await userModel(db).insertOne(body);
+      return await adminModel(db).insertOne(body);
     } catch (err) {
       console.error(err);
       throw err;
@@ -30,7 +30,7 @@ export default (db) => {
 
   const show = async (id) => {
     try {
-      return await userModel(db).findOne({_id: mongoDB.ObjectId(id)}, {password: 0});
+      return await adminModel(db).findOne({_id: mongoDB.ObjectId(id)}, {password: 0});
     } catch (err) {
       console.error(err);
       throw err;
@@ -42,7 +42,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
-      return await userModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, body);
+      return await adminModel(db).findOneAndUpdate({_id: mongoDB.ObjectId(id)}, body);
     } catch (err) {
       console.error(err);
       throw err;
@@ -51,7 +51,7 @@ export default (db) => {
 
   const destroy = async (id) => {
     try {
-      return await userModel(db).findOneAndDelete({_id: mongoDB.ObjectId(id)});
+      return await adminModel(db).findOneAndDelete({_id: mongoDB.ObjectId(id)});
     } catch (err) {
       console.error(err);
       throw err;
@@ -60,7 +60,7 @@ export default (db) => {
 
   const getByEmail = async (email) => {
     try {
-      return await userModel(db).findOne({email});
+      return await adminModel(db).findOne({email});
     } catch (err) {
       console.error(err);
       throw err;

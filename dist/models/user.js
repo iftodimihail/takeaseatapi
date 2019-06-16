@@ -11,4 +11,4 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = function (db) {
   return db.collection('users');
 };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=admin.js.map

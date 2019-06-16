@@ -1,5 +1,5 @@
 import {ExtractJwt, Strategy as JwtStrategy} from 'passport-jwt';
-import userRepo from './repositories/user';
+import userRepo from './repositories/admin';
 
 export default (db, passport) => {
   const opts = {};

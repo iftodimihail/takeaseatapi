@@ -36,6 +36,15 @@ export default (db) => {
     }
   };
 
+  const showByLocalId = async (localId) => {
+    try {
+      return await reservationsModel(db).find({local_id: localId});
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   const update = async (id, body) => {
     try {
       const now = moment().unix();
@@ -61,6 +70,7 @@ export default (db) => {
     index,
     store,
     show,
+    showByLocalId,
     update,
     destroy
   };

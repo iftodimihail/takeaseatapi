@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import response from '../concerns/response';
-import repository from '../repositories/user';
+import repository from '../repositories/admin';
 import validate from 'express-validation';
-import validationRules from '../validation/user';
-import transformer from '../transformers/user';
+import validationRules from '../validation/admin';
+import transformer from '../transformers/admin';
 
 export default (db) => {
 
@@ -12,12 +12,12 @@ export default (db) => {
   /**
    * List all resources
    * @swagger
-   * /api/users:
+   * /api/admins:
    *   get:
    *     tags:
-   *       - Users
-   *     name: List users
-   *     summary: Lists all the users
+   *       - Admins
+   *     name: List admins
+   *     summary: Lists all the admins
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -26,7 +26,7 @@ export default (db) => {
    *       - application/json
    *     responses:
    *       200:
-   *         description: An array of user objects
+   *         description: An array of admin objects
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -34,8 +34,8 @@ export default (db) => {
    */
   api.get('/', async (req, res) => {
     try {
-      const users = await repository(db).index();
-      return response(res).collection(users, transformer);
+      const admins = await repository(db).index();
+      return response(res).collection(admins, transformer);
     } catch (err) {
       return response(res).error(err);
     }
@@ -44,12 +44,12 @@ export default (db) => {
   /**
    * Create a new resource
    * @swagger
-   * /api/users:
+   * /api/admins:
    *   post:
    *     tags:
-   *       - Users
-   *     name: Create user
-   *     summary: Creates a new user
+   *       - Admins
+   *     name: Create admin
+   *     summary: Creates a new admin
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -75,7 +75,7 @@ export default (db) => {
    *           - password
    *     responses:
    *       200:
-   *         description: A user object
+   *         description: A admin object
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -83,8 +83,8 @@ export default (db) => {
    */
   api.post('/', validate(validationRules.store), async (req, res) => {
     try {
-      const user = (await repository(db).store(req.body)).ops;
-      return response(res).item(user, transformer);
+      const admin = (await repository(db).store(req.body)).ops;
+      return response(res).item(admin, transformer);
     } catch (err) {
       return response(res).error(err);
     }
@@ -93,12 +93,12 @@ export default (db) => {
   /**
    * Show an existing resource
    * @swagger
-   * /api/users/{id}:
+   * /api/admins/{id}:
    *   get:
    *     tags:
-   *       - Users
-   *     name: Show user
-   *     summary: Shows an existing user
+   *       - Admins
+   *     name: Show admin
+   *     summary: Shows an existing admin
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -114,7 +114,7 @@ export default (db) => {
    *           - id
    *     responses:
    *       200:
-   *         description: A user object
+   *         description: A admin object
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -122,8 +122,8 @@ export default (db) => {
    */
   api.get('/:id', async (req, res) => {
     try {
-      const user = await repository(db).show(req.params.id);
-      return response(res).item(user, transformer);
+      const admin = await repository(db).show(req.params.id);
+      return response(res).item(admin, transformer);
     } catch (err) {
       return response(res).error(err);
     }
@@ -133,12 +133,12 @@ export default (db) => {
   /**
    * Update an existing resource
    * @swagger
-   * /api/users/{id}:
+   * /api/admins/{id}:
    *   put:
    *     tags:
-   *       - Users
-   *     name: Update user
-   *     summary: Updates an existing user
+   *       - Admins
+   *     name: Update admin
+   *     summary: Updates an existing admin
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -166,7 +166,7 @@ export default (db) => {
    *           - id
    *     responses:
    *       200:
-   *         description: A user object
+   *         description: A admin object
    *       401:
    *         description: Not authorized to access this resource
    *       422:
@@ -174,8 +174,8 @@ export default (db) => {
    */
   api.put('/:id', validate(validationRules.update), async (req, res) => {
     try {
-      const user = await repository(db).update(req.params.id, req.body);
-      return response(res).item(user, transformer);
+      const admin = await repository(db).update(req.params.id, req.body);
+      return response(res).item(admin, transformer);
     } catch (err) {
       return response(res).error(err);
     }
@@ -184,12 +184,12 @@ export default (db) => {
   /**
    * Destroy an existing resource
    * @swagger
-   * /api/users/{id}:
+   * /api/admins/{id}:
    *   delete:
    *     tags:
-   *       - Users
-   *     name: Delete user
-   *     summary: Deletes an existing user
+   *       - Admins
+   *     name: Delete admin
+   *     summary: Deletes an existing admin
    *     security:
    *       - bearerAuth: []
    *     consumes:
@@ -205,14 +205,14 @@ export default (db) => {
    *           - id
    *     responses:
    *       200:
-   *         description: A user object
+   *         description: A admin object
    *       401:
    *         description: Not authorized to access this resource
    */
   api.delete('/:id', async (req, res) => {
     try {
-      const user = await repository(db).destroy(req.params.id);
-      return response(res).item(user, transformer);
+      const admin = await repository(db).destroy(req.params.id);
+      return response(res).item(admin, transformer);
     } catch (err) {
       return response(res).error(err);
     }

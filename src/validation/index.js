@@ -1,4 +1,4 @@
-import user from './user';
+import user from './admin';
 import authentication from './authentication';
 
 module.exports = {

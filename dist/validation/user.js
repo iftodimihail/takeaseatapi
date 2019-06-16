@@ -25,4 +25,4 @@ exports.default = {
     }
   }
 };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=admin.js.map

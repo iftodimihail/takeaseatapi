@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import repository from '../repositories/user';
-import transformer from '../transformers/user';
+import repository from '../repositories/admin';
+import transformer from '../transformers/admin';
 import response from '../concerns/response';
 import validationRules from '../validation/authentication';
 import validate from 'express-validation';
@@ -116,6 +116,55 @@ export default (db) => {
       const token = await jwt.sign(user, process.env.AUTH_SECRET, {
         expiresIn: process.env.AUTH_EXPIRES_IN
       });
+      return response(res).item(user, transformer, null, { token });
+    } catch (err) {
+      return response(res).error(err);
+    }
+  });
+
+  /**
+   * Logs in a user
+   * @swagger
+   * /api/auth/me:
+   *   post:
+   *     tags:
+   *       - Authentication
+   *     name: Log in
+   *     summary: Logs in a user
+   *     consumes:
+   *       - application/json
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: body
+   *         in: body
+   *         schema:
+   *           type: object
+   *           properties:
+   *             email:
+   *               type: string
+   *             password:
+   *               type: string
+   *               format: password
+   *         required:
+   *           - email
+   *           - password
+   *     responses:
+   *       200:
+   *         description: A user object with a token
+   *       403:
+   *         description: Invalid email or password
+   *       422:
+   *         description: Unprocessable entity
+   */
+  api.get('/me', async (req, res) => {
+    let token = null;
+    if(req.headers && req.headers.authorization) {
+      token = req.headers.authorization.split(" ")[1];
+    }
+
+    try {
+      const user = await jwt.verify(token, process.env.AUTH_SECRET);
       return response(res).item(user, transformer, null, { token });
     } catch (err) {
       return response(res).error(err);

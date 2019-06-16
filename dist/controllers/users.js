@@ -364,4 +364,4 @@ exports.default = function (db) {
 
   return api;
 };
-//# sourceMappingURL=users.js.map
+//# sourceMappingURL=admins.js.map

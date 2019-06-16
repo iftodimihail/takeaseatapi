@@ -13,4 +13,4 @@ exports.default = function (data) {
     updated_at: data.updated_at ? data.updated_at : '-'
   };
 };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=admin.js.map

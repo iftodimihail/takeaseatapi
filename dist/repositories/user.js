@@ -316,4 +316,4 @@ exports.default = function (db) {
     comparePassword: comparePassword
   };
 };
-//# sourceMappingURL=user.js.map
+//# sourceMappingURL=admin.js.map

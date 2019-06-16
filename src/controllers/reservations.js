@@ -11,6 +11,7 @@ import QRCode from 'qrcode';
 import cors from 'cors';
 import schedule from 'node-schedule';
 import moment from 'moment/moment';
+import authenticate from '../concerns/authenticate';
 
 const transporter = nodemailer.createTransport({
   host: "smtp.mailtrap.io",
@@ -97,7 +98,7 @@ export default (db) => {
       const resObj =  reservation[0];
       const place = (await localRepository(db).showById(resObj.local_id));
 
-      QRCode.toDataURL(`https://nice-snail-27.localtunnel.me/reservation/${resObj._id}`, async function (err, url) {
+      QRCode.toDataURL(`${process.env.APP_URL}/reservations/${resObj._id}`, async function (err, url) {
        await transporter.sendMail({
           from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
           to: resObj.email, // list of receivers
@@ -149,7 +150,45 @@ export default (db) => {
     } catch (err) {
       return response(res).error(err);
     }
+  });
 
+  /**
+   * Show an existing resource
+   * @swagger
+   * /api/reservations/{id}:
+   *   get:
+   *     tags:
+   *       - Reservations
+   *     name: Show reservation
+   *     summary: Shows an existing reservation
+   *     security:
+   *       - bearerAuth: []
+   *     consumes:
+   *       - application/json
+   *     produces:
+   *       - application/json
+   *     parameters:
+   *       - name: id
+   *         in: path
+   *         schema:
+   *           type: string
+   *         required:
+   *           - id
+   *     responses:
+   *       200:
+   *         description: A reservation object
+   *       401:
+   *         description: Not authorized to access this resource
+   *       422:
+   *         description: Unprocessable entity
+   */
+  api.get('/:localId', async (req, res) => {
+    try {
+      const reservation = await repository(db).showByLocalId(req.params.localId);
+      return response(res).item(reservation, transformer);
+    } catch (err) {
+      return response(res).error(err);
+    }
   });
 
   /**
@@ -208,7 +247,7 @@ export default (db) => {
           to: reservationData.email, // list of receivers
           subject: `TakeASeat Recenzie ${place.name}`, // Subject line
           text: `${reservationData.last_name} hai in coace pe data de ${reservationData.date}`, // plain text body
-          html: `<p>Fa o recenzie <a href='localhost:3000/reviews/${reservationData._id}'>aici</a></p>` // html body
+          html: `<p>Fa o recenzie <a href='${process.env.APP_URL}/reviews/${reservationData._id}'>aici</a></p>` // html body
         });
       });
       return response(res).item(reservation, transformer);
