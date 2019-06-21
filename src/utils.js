@@ -1,6 +1,6 @@
 import moment from 'moment/moment';
 
-export const emailTemplate = (reservation, place, qrUrl) =>
+export const emailTemplate = (reservation, place, qrUrl, status, message) =>
   '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n' +
   '\n' +
   '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:v="urn:schemas-microsoft-com:vml">\n' +
@@ -359,8 +359,11 @@ export const emailTemplate = (reservation, place, qrUrl) =>
                     Rezervarea ta pentru data de <strong>${moment(reservation.date).format('DD.MM.YYYY')}
                     ora ${reservation.hour} în <span style="font-size: 16px">${place.name}</span>
                     pentru ${reservation.nr_persons} persoane</strong>
-                    a fost confirmată cu success.
-                    O zi frumoasă!</p>\n` +
+                    a fost ${status}.</p>\n` +
+  `<p style="font-size: 14px; line-height: 21px; margin: 0;"> 
+                    ${message || ''}</p>\n` +
+  `<p style="font-size: 14px; line-height: 21px; margin: 0;">
+                    ${status === 'confirmată' ? 'O zi frumoasă!' : 'Ne pare rău'}</p>\n` +
   '</div>\n' +
   '</div>\n' +
   '<!--[if mso]></td></tr></table><![endif]-->\n' +

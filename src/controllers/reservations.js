@@ -51,6 +51,11 @@ export default (db) => {
    */
   api.get('/', async (req, res) => {
     try {
+      if (req.query.localId) {
+        const placeReservations = await repository(db).showPendingReservations(req.query.localId);
+        return response(res).collection(placeReservations, transformer);
+      }
+
       const reservations = await repository(db).index();
       return response(res).collection(reservations, transformer);
     } catch (err) {
@@ -94,19 +99,7 @@ export default (db) => {
   api.post('/', cors(), validate(validationRules.store), async (req, res) => {
     try {
       const reservation = (await repository(db).store(req.body)).ops;
-
       const resObj =  reservation[0];
-      const place = (await localRepository(db).showById(resObj.local_id));
-
-      QRCode.toDataURL(`${process.env.APP_URL}/reservations/${resObj._id}`, async function (err, url) {
-       await transporter.sendMail({
-          from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
-          to: resObj.email, // list of receivers
-          subject: `TakeASeat Rezervare ${place.name}`, // Subject line
-          text: `${resObj.last_name} hai in coace pe data de ${resObj.date}`, // plain text body
-          html: emailTemplate(resObj, place, url) // html body
-        });
-      });
       return response(res).item(resObj, transformer);
     } catch (err) {
       return response(res).error(err);
@@ -185,6 +178,29 @@ export default (db) => {
   api.get('/:localId', async (req, res) => {
     try {
       const reservation = await repository(db).showByLocalId(req.params.localId);
+      return response(res).item(reservation, transformer);
+    } catch (err) {
+      return response(res).error(err);
+    }
+  });
+
+  api.put('/change-reservation-status/:id', validate(validationRules.update), async (req, res) => {
+    try {
+      const reservation = await repository(db).update(req.params.id, req.body);
+      const reservationData = reservation.value;
+      const place = (await localRepository(db).showById(reservationData.local_id));
+
+      const reservationStatus = req.body.status === 'confirmed' ? 'confirmată' : 'respinsă';
+
+      QRCode.toDataURL(`${process.env.APP_URL}/reservations/${reservationData._id}`, async function (err, url) {
+        await transporter.sendMail({
+          from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
+          to: reservationData.email, // list of receivers
+          subject: `TakeASeat Rezervare ${place.name}`, // Subject line
+          text: `${reservationData.last_name} hai in coace pe data de ${reservationData.date}`, // plain text body
+          html: emailTemplate(reservationData, place, url, reservationStatus, req.body.message) // html body
+        });
+      });
       return response(res).item(reservation, transformer);
     } catch (err) {
       return response(res).error(err);

@@ -19,6 +19,7 @@ export default (db) => {
       const now = moment().unix();
       body.created_at = now;
       body.updated_at = now;
+      body.status = 'pending';
       body.confirmed = false;
       return await reservationsModel(db).insertOne(body);
     } catch (err) {
@@ -36,9 +37,9 @@ export default (db) => {
     }
   };
 
-  const showByLocalId = async (localId) => {
+  const showPendingReservations = async (localId) => {
     try {
-      return await reservationsModel(db).find({local_id: localId});
+      return await reservationsModel(db).find({local_id: parseInt(localId), status: 'pending'}).toArray();
     } catch (err) {
       console.error(err);
       throw err;
@@ -70,7 +71,7 @@ export default (db) => {
     index,
     store,
     show,
-    showByLocalId,
+    showPendingReservations,
     update,
     destroy
   };
