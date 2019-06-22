@@ -26,7 +26,9 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'moo-bistro',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.155412,
+    lng: 27.587642
   },
   {
     id: 2,
@@ -38,7 +40,9 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'cafeneaua-piața-unirii',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.166128,
+    lng: 27.580752
   },
   {
     id: 3,
@@ -50,7 +54,9 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'legends-pub',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.158746,
+    lng: 27.588674
   },
   {
     id: 4,
@@ -62,7 +68,9 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'fenice',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.155681,
+    lng: 27.586668
   },
   {
     id: 5,
@@ -74,7 +82,9 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'dionisos',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.158447,
+    lng : 27.600412
   },
   {
     id: 6,
@@ -86,19 +96,23 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'taverna',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.162964,
+    lng: 27.581190
   },
   {
     id: 7,
     img: placeCard7,
-    name: 'Square',
+    name: 'La Folie',
     address: 'Lorem ipsum',
     priceType: 'Moderat',
     placeType: 'Cafenea',
     kitchenType: 'Random',
-    uniqueLink: 'square',
+    uniqueLink: 'la-folie',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.158329,
+    lng: 27.589818
   },
   {
     id: 8,
@@ -110,6 +124,8 @@ module.exports = [
     kitchenType: 'Random',
     uniqueLink: 'fika',
     rating: 0,
-    totalReviews: 0
+    totalReviews: 0,
+    lat: 47.165192,
+    lng: 27.579972
   }
 ];

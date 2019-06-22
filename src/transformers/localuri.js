@@ -8,5 +8,7 @@ export default (data) => ({
   kitchenType: data.kitchenType,
   uniqueLink: data.uniqueLink,
   rating: data.rating,
-  totalReviews: data.totalReviews
+  totalReviews: data.totalReviews,
+  lat: data.lat,
+  lng: data.lng
 });
