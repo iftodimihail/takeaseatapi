@@ -156,6 +156,10 @@ module.exports = (res) => {
     return respond(responseData, code ? code : 200);
   };
 
+  const locationJson = (data, code) => {
+    return respond(JSON.parse(data), code ? code: 200);
+  };
+
   return {
     collection,
     item,
@@ -164,6 +168,7 @@ module.exports = (res) => {
     unauthorized,
     forbidden,
     notFound,
-    internalError
+    internalError,
+    locationJson
   };
 };
