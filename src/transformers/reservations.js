@@ -7,5 +7,8 @@ export default (data) => ({
   email: data.email,
   date: data.date,
   hour: data.hour,
-  nr_persons: data.nr_persons
+  nr_persons: data.nr_persons,
+  reviewed: data.reviewed,
+  confirmed: data.confirmed,
+  status: data.status
 });
