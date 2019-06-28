@@ -49,8 +49,13 @@ export default (db) => {
   api.get('/', authenticate, async (req, res) => {
     try {
       if (req.query.localId) {
-        const placeReservations = await repository(db).showPendingReservations(req.query.localId);
-        return response(res).collection(placeReservations, transformer);
+        if(req.query.noPending) {
+          const placeReservations = await repository(db).showNotPendingReservations(req.query.localId);
+          return response(res).collection(placeReservations, transformer);
+        } else {
+          const placeReservations = await repository(db).showPendingReservations(req.query.localId);
+          return response(res).collection(placeReservations, transformer);
+        }
       }
 
       const reservations = await repository(db).index();

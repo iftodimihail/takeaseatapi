@@ -57,20 +57,6 @@ export default (db) => {
     }
   });
 
-  api.get('/place-info', cors(), async (req, res) => {
-    try {
-      if(req.query.name) {
-        request('https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=Fenice,Iasi,Romania&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key=AIzaSyDeCL8ID8s38u0IN6ZtCkpZCRX_39GQzSI', (error, resp, body) => {
-            if (!error && resp.statusCode == 200) {
-              return response(res).locationJson(body);
-            }
-          });
-      }
-    } catch (err) {
-      return response(res).error(err);
-    }
-  });
-
   /**
    * Show an existing resource
    * @swagger

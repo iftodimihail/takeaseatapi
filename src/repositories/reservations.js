@@ -46,6 +46,15 @@ export default (db) => {
     }
   };
 
+  const showNotPendingReservations = async (localId) => {
+    try {
+      return await reservationsModel(db).find({local_id: parseInt(localId), status: { $ne: 'pending'}}).toArray();
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   const update = async (id, body) => {
     try {
       const now = moment().unix();
@@ -72,6 +81,7 @@ export default (db) => {
     store,
     show,
     showPendingReservations,
+    showNotPendingReservations,
     update,
     destroy
   };
