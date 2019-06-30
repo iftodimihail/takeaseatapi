@@ -13,7 +13,7 @@ module.exports = [
   },
   {
     id: 4,
-    name: 'Turcă'
+    name: 'Franțuzească'
   },
   {
     id: 5,

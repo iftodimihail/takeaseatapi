@@ -10,7 +10,7 @@ Out of the box structure for an API
 6. `npm run dev` OR `npm run start`, depending on environment.
 
 # How to access swagger docs
-Open browser and load `http://localhost:7777/api-docs/`, considering the PORT at which the server is running is 7777
+Open browser and load `http://localhost:7000/api-docs/`, considering the PORT at which the server is running is 7777
 
 # How to test
 `npm test`

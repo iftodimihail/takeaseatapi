@@ -9,6 +9,8 @@ export default (data) => ({
   uniqueLink: data.uniqueLink,
   rating: data.rating,
   totalReviews: data.totalReviews,
+  openHour: data.openHour,
+  closeHour: data.closeHour,
   lat: data.lat,
   lng: data.lng
 });

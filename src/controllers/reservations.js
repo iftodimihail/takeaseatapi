@@ -195,12 +195,14 @@ export default (db) => {
 
       const reservationStatus = req.body.status === 'confirmed' ? 'confirmată' : 'respinsă';
 
-      await QRCode.toDataURL(`${process.env.APP_URL}/reservations/${reservationData._id}`, async (err, url) => {
-        let base64Image = url.split(';base64,').pop();
+      if(req.body.status === "confirmed") {
+        await QRCode.toDataURL(`${process.env.APP_URL}/reservations/${reservationData._id}`, async (err, url) => {
+          let base64Image = url.split(';base64,').pop();
           fs.writeFile(`./src/storage/${reservationData._id}.png`, base64Image, {encoding: 'base64'}, function (error) {
-          console.log(error || 'File created');
+            console.log(error || 'File created');
+          });
         });
-      });
+      }
 
       let filepath = path.join(__dirname, '..', 'storage' , `${reservationData._id}.png`);
       schedule.scheduleJob(date, function() {
@@ -208,7 +210,6 @@ export default (db) => {
           from: '"Take-A-Seat" <reservations@takeaseat.com>', // sender address
           to: reservationData.email, // list of receivers
           subject: `TakeASeat Rezervare ${place.name}`, // Subject line
-          text: `${reservationData.last_name} hai in coace pe data de ${reservationData.date}`, // plain text body
           html: emailTemplate(reservationData, place, `cid:${reservationData._id}.png`, reservationStatus, req.body.message), // html body
           inline: filepath
         }, (error, body) => {
