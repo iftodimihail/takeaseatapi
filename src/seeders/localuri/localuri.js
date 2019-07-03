@@ -29,6 +29,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 10,
     closeHour: 0,
+    city: 'Iași',
     lat: 47.155412,
     lng: 27.587642
   },
@@ -45,6 +46,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 9,
     closeHour: 5,
+    city: 'Iași',
     lat: 47.166128,
     lng: 27.580752
   },
@@ -55,12 +57,13 @@ module.exports = [
     address: 'Strada Grigore Ureche nr. 27, Iași',
     priceType: 'Accesibil',
     placeType: 'Pub',
-    kitchenType: 'Americană',
+    kitchenType: 'Englezească',
     uniqueLink: 'legends-pub',
     rating: 0,
     totalReviews: 0,
     openHour: 10,
     closeHour: 1,
+    city: 'Iași',
     lat: 47.158746,
     lng: 27.588674
   },
@@ -77,6 +80,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 9,
     closeHour: 1,
+    city: 'Iași',
     lat: 47.155681,
     lng: 27.586668
   },
@@ -93,6 +97,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 10,
     closeHour: 1,
+    city: 'Iași',
     lat: 47.158447,
     lng : 27.600412
   },
@@ -109,6 +114,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 10,
     closeHour: 1,
+    city: 'Iași',
     lat: 47.162337,
     lng: 27.582306
   },
@@ -125,6 +131,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 10,
     closeHour: 0,
+    city: 'Iași',
     lat: 47.158329,
     lng: 27.589818
   },
@@ -141,6 +148,7 @@ module.exports = [
     totalReviews: 0,
     openHour: 8,
     closeHour: 22,
+    city: 'Iași',
     lat: 47.165192,
     lng: 27.579972
   }

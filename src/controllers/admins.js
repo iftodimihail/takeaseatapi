@@ -64,6 +64,8 @@ export default (db) => {
    *           properties:
    *             name:
    *               type: string
+   *             local_id:
+   *               type: integer
    *             email:
    *               type: string
    *             password:

@@ -11,6 +11,7 @@ export default (data) => ({
   totalReviews: data.totalReviews,
   openHour: data.openHour,
   closeHour: data.closeHour,
+  city: data.city,
   lat: data.lat,
   lng: data.lng
 });
