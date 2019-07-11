@@ -5,7 +5,7 @@ import localRepository from '../repositories/localuri';
 import validate from 'express-validation';
 import validationRules from '../validation/reservations';
 import transformer from '../transformers/reservations';
-import { emailTemplate } from '../utils';
+import { emailTemplate, reviewTemplate } from '../utils';
 import QRCode from 'qrcode';
 import cors from 'cors';
 import schedule from 'node-schedule';
@@ -281,7 +281,7 @@ export default (db) => {
           to: reservationData.email, // list of receivers
           subject: `TakeASeat Recenzie ${place.name}`, // Subject line
           text: `${reservationData.last_name} hai in coace pe data de ${reservationData.date}`, // plain text body
-          html: `<p>Fa o recenzie <a href='${process.env.APP_URL}/reviews/${reservationData._id}'>aici</a></p>` // html body
+          html: reviewTemplate(reservationData, place.name, `${process.env.APP_URL}/reviews/${reservationData._id}`) // html body
         });
       });
       return response(res).item(reservation, transformer);
